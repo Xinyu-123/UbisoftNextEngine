@@ -43,9 +43,9 @@ namespace App
 	//-------------------------------------------------------------------------------------------
 	// CSimpleSprite *CreateSprite(const char *fileName, int columns, int rows)
 	//-------------------------------------------------------------------------------------------
-	// Creates a sprite object from the given texture file. File must be a 32 bit BMP format (A8 R8 G8 B8).
-	// You can load and save this format using GIMP (Free graphics editor).
-	// The columns and rows parameters define the number of columns and rows of sprite animation frames in the given image.
+	// Creates a sprite object from the given texture file. File must be a 32 bit BMP format.
+	// The columns and rows paramaters define the number of columns and rows of sprite animation
+	// frames in the given image.
 	// You can then use the CSimpleSprite methods to animate/move etc.
 	//-------------------------------------------------------------------------------------------
 	CSimpleSprite *CreateSprite(const char *fileName, int columns, int rows);

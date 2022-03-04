@@ -7,5 +7,6 @@ private:
 	virtual void Render(const Mat4<float>& _vp) const = 0;
 
 	friend class RenderSystem;
+	friend class GameObject;
 };
 

@@ -53,7 +53,7 @@
     <ClCompile Include="ComponentScript.cpp">
       <Filter>Engine\Components</Filter>
     </ClCompile>
-    <ClCompile Include="Math.cpp">
+    <ClCompile Include="Algo.cpp">
       <Filter>Engine\Math</Filter>
     </ClCompile>
     <ClCompile Include="IRenderable.cpp">
@@ -67,6 +67,39 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Engine\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSystem.cpp">
+      <Filter>Engine\Souce Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Engine\3D Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorChanger.cpp">
+      <Filter>Game\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="AABB.cpp">
+      <Filter>Engine\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="SphereCollider.cpp">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxCollider.cpp">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="MeshCollider.cpp">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>Engine\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Engine\3D Shapes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +172,7 @@
     <ClInclude Include="ComponentScript.h">
       <Filter>Engine\Components</Filter>
     </ClInclude>
-    <ClInclude Include="Math.h">
+    <ClInclude Include="Algo.h">
       <Filter>Engine\Math</Filter>
     </ClInclude>
     <ClInclude Include="IRenderable.h">
@@ -156,6 +189,39 @@
     </ClInclude>
     <ClInclude Include="Mat4.h">
       <Filter>Engine\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Engine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSystem.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Engine\3D Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorChanger.h">
+      <Filter>Game\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="AABB.h">
+      <Filter>Engine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="SphereCollider.h">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxCollider.h">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCollider.h">
+      <Filter>Engine\Components\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>Engine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Engine\3D Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +245,21 @@
     </Filter>
     <Filter Include="Engine\Math">
       <UniqueIdentifier>{18791eb1-a155-4390-b9e2-2db7647cb4e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Tools">
+      <UniqueIdentifier>{ad40f64c-c674-4348-bb49-1110b169d0f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\3D Shapes">
+      <UniqueIdentifier>{568705ce-ad7a-44a8-bee4-052a9e7db27f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{0cbbc4f7-a2ad-4170-8a83-5d47aba8b48f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripts">
+      <UniqueIdentifier>{1b482669-06c2-4c46-8fa0-ad1eab2b56cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\Collision">
+      <UniqueIdentifier>{c2a13a0b-ea83-4555-a531-b5dac97bac2d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

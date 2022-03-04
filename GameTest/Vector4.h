@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector3.h"
 
 template<class T>
 class Vector4
@@ -9,9 +10,14 @@ public:
 		x(T(0)), y(T(0)), z(T(0)), w(T(0))
 	{ }
 
-	Vector4(T _x, T _y, T _z, T _w)
+	Vector4(const T& _x, const T& _y, const T& _z, const T& _w)
 		:
 		x(_x), y(_y), z(_z), w(_w)
+	{ }
+	
+	Vector4(const Vector3<T>& _vec3 , T _w = (T)1)
+		:
+		x(_vec3.x), y(_vec3.y), z(_vec3.z), w(_w)
 	{ }
 
 	T Dot(const Vector4& other)
@@ -68,6 +74,14 @@ public:
 		*this = *this / scalar;
 		return *this;
 	}
+
+	explicit operator Vector3<T>() const
+	{
+		return { x, y, z };
+	}
+
+	
+
 
 public:
 	T x;

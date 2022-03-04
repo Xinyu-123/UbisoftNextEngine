@@ -7,7 +7,6 @@
 
 #include <dsound.h>
 #include <map>
-#include <string>
 
 //-----------------------------------------------------------------------------
 // CSimpleSound
@@ -53,7 +52,7 @@ private:
 	IDirectSound8* m_directSound;
 	IDirectSoundBuffer* m_primaryBuffer;
 	IDirectSoundBuffer8* m_secondaryBuffer1;
-	std::map<std::string, IDirectSoundBuffer8 *> m_sounds;
+	std::map<const char *, IDirectSoundBuffer8 *> m_sounds;
 };
 
 #endif

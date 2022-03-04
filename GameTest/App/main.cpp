@@ -127,7 +127,7 @@ void Idle()
 	double tick = GetCounter() - prevTime;
 	double currentTime = GetCounter();
 	double deltaTime = currentTime - gLastTime;
-	// Update.\\ubisoft.org\Projects\Tetra\TOR\Versions\PACKAGES\Durango\TOR-TETRA-STREAM-MAIN-971.2\TEST_profile\MSXC
+	// Update.
 	if (deltaTime > (UPDATE_MAX))
 	{	
 		gUpdateDeltaTime.Stop();

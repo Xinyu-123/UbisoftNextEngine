@@ -102,14 +102,15 @@
       <CompileAsManaged>
       </CompileAsManaged>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>dxguid.lib;dsound.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)\GameTest\glut\bin\*.dll $(OutputPath) /Y</Command>
+      <Command>xcopy "$(SolutionDir)\GameTest\glut\bin\*.dll" "$(OutputPath)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -119,6 +120,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -138,9 +140,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
@@ -148,7 +151,7 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)\GameTest\glut\bin\*.dll $(OutputPath) /Y</Command>
+      <Command>xcopy "$(SolutionDir)\GameTest\glut\bin\*.dll" "$(OutputPath)" /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -160,6 +163,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -176,6 +180,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AABB.h" />
     <ClInclude Include="App\app.h" />
     <ClInclude Include="App\AppSettings.h" />
     <ClInclude Include="App\main.h" />
@@ -184,21 +189,31 @@
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="App\TextureLoader.h" />
     <ClInclude Include="Asset.h" />
+    <ClInclude Include="Box.h" />
+    <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionSystem.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="ColorChanger.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentScript.h" />
     <ClInclude Include="CRtti.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="GameEngine.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="IRenderable.h" />
     <ClInclude Include="Mat4.h" />
-    <ClInclude Include="Math.h" />
+    <ClInclude Include="Algo.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="MeshCollider.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="StandardTypes.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -207,6 +222,7 @@
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AABB.cpp" />
     <ClCompile Include="App\app.cpp" />
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="App\SimpleController.cpp" />
@@ -214,20 +230,30 @@
     <ClCompile Include="App\SimpleSprite.cpp" />
     <ClCompile Include="App\TextureLoader.cpp" />
     <ClCompile Include="Asset.cpp" />
+    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionSystem.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ColorChanger.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentScript.cpp" />
     <ClCompile Include="CRtti.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="GameEngine.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="IRenderable.cpp" />
-    <ClCompile Include="Math.cpp" />
+    <ClCompile Include="Algo.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="MeshCollider.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="registerClasses.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

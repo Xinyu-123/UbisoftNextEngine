@@ -37,6 +37,21 @@ void GameObjectManager::RemoveGameObject(GameObject* const _gm)
 	_gm->toBeDestroyed = true;
 }
 
+GameObject* GameObjectManager::GetGameObjectByTag(std::string& _tag)
+{
+	return nullptr;
+}
+
+std::vector<GameObject*> GameObjectManager::GetGameObjectsByTag(std::string& _tag)
+{
+	return {};
+}
+
+std::vector<GameObject*>& GameObjectManager::GetGameObjects()
+{
+	return gameObjects;
+}
+
 void GameObjectManager::ClearGameObjects()
 {
 	gameObjectsToRemove.clear();
@@ -47,4 +62,14 @@ void GameObjectManager::ClearGameObjects()
 		gameObjectsToRemove.push_back(gm);
 	}
 	
+}
+
+GameObjectManager::GameObjectManager()
+{
+
+}
+
+GameObjectManager::~GameObjectManager()
+{
+	// TO-DO remove and delete the remaining gameobjects
 }

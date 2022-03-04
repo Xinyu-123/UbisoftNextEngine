@@ -18,7 +18,9 @@
 void Init()
 {
 	//GameEngine::Get().Load("temp_file_name.json");
+	GameEngine::Get().Load("");
 	GameEngine::Get().Initialize();
+
 }
 
 //------------------------------------------------------------------------
@@ -27,7 +29,7 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
-	GameEngine::Get().Update(deltaTime);
+	GameEngine::Get().Update(deltaTime * 0.001f);
 }
 
 //------------------------------------------------------------------------
@@ -36,6 +38,7 @@ void Update(float deltaTime)
 //------------------------------------------------------------------------
 void Render()
 {	
+
 	GameEngine::Get().Render();
 }
 //------------------------------------------------------------------------

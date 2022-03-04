@@ -5,6 +5,7 @@ IMPLEMENT_DYNAMIC_CLASS(Transform);
 
 Transform::Transform()
 {
+
 }
 
 void Transform::Initialize()
@@ -22,3 +23,4 @@ void Transform::Cleanup()
 void Transform::Reset()
 {
 }
+

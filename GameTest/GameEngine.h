@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Singleton.h"
-class GameEngine : public Singleton<GameEngine>
+class GameEngine final : public Singleton<GameEngine>
 {
 	DECLARE_SINGLETON(GameEngine)
 public:
@@ -11,7 +11,6 @@ public:
 	void Render();
 	void Shutdown();
 	void Restart();
-
 
 	friend class Singleton<GameEngine>;
 };

@@ -2,8 +2,6 @@
 
 #define STRCODE size_t
 
-#define PI 3.1415927410125732421875
-
 // Generate a hashcode from a string usign FVN-1
 constexpr STRCODE getHashCode(const char* str)
 {
@@ -24,5 +22,6 @@ constexpr STRCODE getHashCode(const char* str)
 private:\
 	className();\
 	~className();\
-	inline explicit className(className const&) = delete;\
-	inline className& operator=(className const&) = delete;
+	explicit className(className const&) = delete;\
+	className& operator=(className const&) = delete;\
+	friend class Singleton<className>;

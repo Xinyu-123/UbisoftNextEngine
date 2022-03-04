@@ -1,11 +1,59 @@
 #include "stdafx.h"
 #include "GameObject.h"
 #include "Component.h"
+#include "RenderSystem.h"
+#include "IRenderable.h"
+#include "Mesh.h"
+#include "Transform.h"
+#include "Camera.h"
+#include "Collider.h"
+#include "CollisionSystem.h"
+
 IMPLEMENT_DYNAMIC_CLASS(GameObject);
+
+GameObject::GameObject()
+{
+	if (transform == nullptr)
+	{
+		Transform* t = new Transform();
+		AddComponent(t);
+		transform = t;
+	}
+}
 
 void GameObject::AddComponent(Component* _component)
 {
-	components.at(_component->getDerivedClassHashCode()).push_back(_component);
+	_component->go = this;
+	
+
+
+	if (_component->renderable == true)
+	{
+		// Create a macro to cast Component to derived class to IRenderable
+		IRenderable* r = dynamic_cast<IRenderable*>(_component);
+		RenderSystem::Get().AddRenderable(r);
+
+	}
+
+
+	if (_component->getDerivedClassHashCode() == Camera::getClassHashCode())
+	{
+		RenderSystem::Get().AddCamera(static_cast<Camera*>(_component));
+	}
+
+
+	if (_component->collider == true)
+	{
+		Collider* c = static_cast<Collider*>(_component);
+		CollisionSystem::Get().AddCollider(c);
+
+		components[Collider::getClassHashCode()].push_back(_component);
+
+		return;
+	}
+
+
+	components[_component->getDerivedClassHashCode()].push_back(_component);
 }
 
 void GameObject::RemoveComponent(Component* _component)
@@ -39,7 +87,7 @@ Component* GameObject::FindComponentOfType(const std::string& _name)
 	return FindComponentOfType(CRtti::getRtti(_name).getClassHashCode());
 }
 
-const std::vector<Component*>& GameObject::FindComponentsOfType(STRCODE _code)
+const std::vector<Component*> GameObject::FindComponentsOfType(STRCODE _code)
 {
 	if (components.count(_code) <= 0)
 		return {};
@@ -47,7 +95,7 @@ const std::vector<Component*>& GameObject::FindComponentsOfType(STRCODE _code)
 	return components.at(_code);
 }
 
-const std::vector<Component*>& GameObject::FindComponentsOfType(const std::string& _name)
+const std::vector<Component*> GameObject::FindComponentsOfType(const std::string& _name)
 {
 	return FindComponentsOfType(CRtti::getRtti(_name).getClassHashCode());
 }

@@ -35,6 +35,17 @@ public:
 		ret.data[3].w = (T)1;
 		return ret;
 	}
+
+	Vector4<T> operator*(const Vector4<T>& _vec)
+	{
+		return {
+			_vec.x * data[0].x + _vec.y * data[1].x + _vec.z * data[2].x + _vec.w * data[3].x,
+			_vec.x * data[0].y + _vec.y * data[1].y + _vec.z * data[2].y + _vec.w * data[3].y,
+			_vec.x * data[0].z + _vec.y * data[1].z + _vec.z * data[2].z + _vec.w * data[3].z,
+			_vec.x * data[0].w + _vec.y * data[1].w + _vec.z * data[2].w + _vec.w * data[3].w,
+		};
+	}
+	
 public:
 	std::vector<Vector4<T>> data;
 };

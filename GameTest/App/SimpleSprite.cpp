@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <assert.h>
+
 //-----------------------------------------------------------------------------
 
 #include "app.h"
@@ -17,7 +18,7 @@
 
 #include "../glut/include/GL/freeglut_ext.h"
 
-std::map<std::string, CSimpleSprite::sTextureDef > CSimpleSprite::m_textures;
+std::map<const char *, CSimpleSprite::sTextureDef > CSimpleSprite::m_textures;
 
 //-----------------------------------------------------------------------------
 CSimpleSprite::CSimpleSprite(const char *fileName, unsigned int nColumns, unsigned int nRows)
@@ -50,7 +51,6 @@ void CSimpleSprite::Update(float dt)
             m_animTime = m_animTime - duration;
         }
         int frame = (int)( m_animTime / anim.m_speed );
-		frame %= anim.m_frames.size();
         SetFrame(anim.m_frames[frame]);        
     }
 }
@@ -63,7 +63,7 @@ void CSimpleSprite::CalculateUVs()
     int column = m_frame % m_nColumns;
 
     m_width = m_texWidth * u;
-    m_height = m_texHeight * v;
+    m_height = m_texWidth * v;
     m_uvcoords[0] = u * column;
     m_uvcoords[1] = v * (float)(row+1);
 
@@ -96,7 +96,7 @@ void CSimpleSprite::Draw()
     glTranslatef(x, y, 0.0f);   
     glScalef(scalex, scaley, 0.1f);    
     glRotatef(m_angle * 180 / PI, 0.0f, 0.0f, 1.0f);     
-	glColor4f(m_red, m_green, m_blue, m_alpha);
+	glColor3f(m_red, m_green, m_blue);
     glEnable(GL_BLEND);    
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);    
     glEnable(GL_TEXTURE_2D);
@@ -135,15 +135,6 @@ void CSimpleSprite::SetAnimation(int id)
         }
     }
 	m_currentAnim = -1;
-}
-
-void CSimpleSprite::CreateAnimation(unsigned int id, float speed, const std::vector<int> &frames)
-{
-	sAnimation anim;
-	anim.m_id = id;
-	anim.m_speed = speed;
-	anim.m_frames = frames;
-	m_animations.push_back(anim);
 }
 
 bool CSimpleSprite::LoadTexture(const char * filename)

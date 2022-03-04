@@ -3,7 +3,7 @@
 #include "Vector3.h"
 #include "Vector4.h"
 #include "Quaternion.h"
-namespace Math
+namespace Algo
 {
 	template<class T>
 	inline constexpr Vector3<T> Lerp(const Vector3<T>& _start, const Vector3<T>& _end, float _t)
