@@ -7,7 +7,7 @@ class AABB
 {
 private:
 	bool CheckCollision(const AABB _other);
-	Box GetTransformedBox(const Transform* _transform);
+
 public:
 	// the back-bottom-left most point of the AABB
 	Box box;

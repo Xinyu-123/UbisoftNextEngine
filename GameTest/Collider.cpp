@@ -30,7 +30,7 @@ AABB Collider::GetTransformedAABB() const
 {
 	AABB ret = aabb;
 	const Transform* transform = go->PeekTransform();
-	ret.GetTransformedBox(transform);
+	ret.box = ret.box.GetTransformedBox(transform);
 	return ret;
 }
 

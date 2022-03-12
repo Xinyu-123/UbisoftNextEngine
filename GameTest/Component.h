@@ -2,13 +2,14 @@
 #include "Object.h"
 
 class GameObject;
+class Transform;
 
 class Component : public Object
 {
 	DECLARE_ABSTRACT_DERIVED_CLASS(Component, Object);
 
 public:
-
+	GameObject* GetGameObject() { return go; }
 protected:
 	Component();
 	virtual ~Component();
@@ -25,6 +26,7 @@ private:
 
 protected:
 	GameObject* go = nullptr;
+	Transform* transform = nullptr;
 	bool CanAttachMultiple = false;
 	bool renderable = false;
 	bool collider = false;

@@ -18,9 +18,13 @@ private:
 	}
 
 	void AddCamera(Camera* _cam);
+	void RemoveCamera()
+	{
+		camera = nullptr;
+	}
 private:
 	std::vector<IRenderable*> renderables;
-	Camera* camera;
+	Camera* camera = nullptr;
 
 	bool renderColliders = false;
 

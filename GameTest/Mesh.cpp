@@ -3,6 +3,7 @@
 #include "Transform.h"
 #include "GameObject.h"
 #include "App/app.h"
+#include "Camera.h"
 
 IMPLEMENT_DYNAMIC_CLASS(Mesh)
 
@@ -26,13 +27,10 @@ void Mesh::Cleanup()
 // Draw a wireframe of the mesh
 // Coordinates are from -1 to 1 in the x and y
 // 0 - fov limit in the z
-void Mesh::Render(const Mat4<float>& _vp) const
+void Mesh::Render(const Camera* _camera) const
 {
 	Transform* transform = go->GetTransform();
-	// create our world matrix
-	Mat4<float> world = Mat4<float>::Identity();
-	// Create the world-view-projection matrix
-	Mat4<float> wvp = world * _vp;
+
 
 	// Transform all the vertices and draw lines based on the indices
 	std::vector<Vector4<float>> verts(vertices.size());
@@ -45,8 +43,9 @@ void Mesh::Render(const Mat4<float>& _vp) const
 	for (Vector4<float>& vert : verts)
 	{
 		transform->TransformVertex(vert);
-		vert = wvp * vert;
+		_camera->TransformVertex(vert);
 
+		vert = _camera->PeekPerspectiveMat() * vert;
 		// Z-Divide
 		float z_inverse = 1 / vert.z;
 		vert.x *= z_inverse;

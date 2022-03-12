@@ -1,5 +1,6 @@
 #pragma once
 #include "Vector4.h"
+#include "Mat4.h"
 
 template<class T>
 class Quaternion final
@@ -79,7 +80,7 @@ public:
 
 	Quaternion<T>& operator*=(const Quaternion<T>& _other)
 	{
-		return *this = *this * _other;
+		return *this = _other * *this;
 	}
 
 	Quaternion<T> operator*(const float _scale) const
@@ -112,7 +113,7 @@ public:
 	void Normalize()
 	{
 		if (MagnitudeSq() == 0.0f)
-			throw "Tried to Normalize a Quaternion with a Magnitude of 0";
+			return;
 
 		float magInverse = 1 / Magnitude();
 
@@ -120,6 +121,12 @@ public:
 		imaginary *= magInverse;
 	}
 
+	Quaternion<T> GetNormalized()
+	{
+		Quaternion<T> ret = *this;
+		ret.Normalize();
+		return ret;
+	}
 	
 	void ConvertToUnitNormQuaternion() {
 
@@ -152,7 +159,7 @@ public:
 		return ret;
 	}
 	
-	Vector3<T> RotateAround(const Vector3<T>& _point)
+	Vector3<T> RotateAround(const Vector3<T>& _point) const
 	{
 		//convert our vector to a pure quaternion
 		Quaternion<T> p(0, _point);
@@ -160,6 +167,7 @@ public:
 		//convert quaternion to unit norm quaternion
 		Quaternion<T> q = *this;
 			
+		q.Normalize();
 		//q.ConvertToUnitNormQuaternion();
 
 		//Get the inverse of the quaternion
@@ -172,12 +180,35 @@ public:
 		return rotatedVector.imaginary;
 	}
 	
-	Vector3<T> RotateAround(const Vector4<T>& _point)
+	Vector3<T> RotateAround(const Vector4<T>& _point) const
 	{
 		return RotateAround((Vector3<T>)_point);
 	}
 
-	static Quaternion Identity()
+	// static helper functions
+
+	static Quaternion<T> LookAt(const Vector3<T>& sourcePoint, const Vector3<T>& destPoint, const Vector3<T>& front, const Vector3<T>& up)
+	{
+		Vector3<float> toVector = (destPoint - sourcePoint).GetNormalized();
+
+		//compute rotation axis
+		Vector3<float> rotAxis = front.Cross(toVector).GetNormalized();
+		if (rotAxis.MagnitudeSq() == 0)
+			rotAxis = up;
+
+		//find the angle around rotation axis
+		float dot = front.Dot(toVector);
+		float ang = std::acosf(dot);
+
+		auto s = std::sinf(ang / 2);
+		auto u = rotAxis.GetNormalized();
+
+		return Quaternion<T>(std::cosf(ang / 2), u.x * s, u.y * s, u.z * s);
+	}
+
+
+
+	constexpr static Quaternion Identity()
 	{
 		Quaternion q;
 		q.scalar = 1;
@@ -197,12 +228,24 @@ public:
 		return q;
 	}
 
-	// static helper functions
-
+	// not working
+	constexpr static Mat4<float> RotationMatrix()
+	{
+		Vector3<float> i = imaginary;
+		float scalar = scalar;
+		return Mat4<float>();
+		//return {
+		//	1 - 2 * i.y * i.y - 2 * i.z * i.z,	2 * i.x * i.y - 2 * scalar * i.z,		2 * i.x * i.z + 2 * scalar * i.y,	0,
+		//	2 * i.x * i.y + 2 * scalar * i.z,	1 - 2 * i.x * i.x - 2 * i.z * i.z,		2 * i.y * i.z - 2 * scalar * i.x,	0,
+		//	2 * i.x * i.z - 2 * scalar * i.y,	2 * i.y * i.z + 2 * scalar * i.x,		1 - 2 * i.x * i.x - 2 * i.y * i.y,	0,
+		//	0,									0,										0,									1
+		//};
+	}
 	// to-do
 	// Quaternion to euler angles
 	// 
-private:
+public:
+
 	T scalar;
 	Vector3<T> imaginary;
 };

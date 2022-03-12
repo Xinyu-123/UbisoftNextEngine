@@ -26,23 +26,3 @@ bool AABB::CheckCollision(const AABB _other)
 	return true;
 }
 
-Box AABB::GetTransformedBox(const Transform* _transform)
-{
-	Box ret = box;
-
-	// No need to scale the box, might change it later though
-	//ret.pos.x *= _transform->PeekScale().x;
-	//ret.pos.y *= _transform->PeekScale().y;
-	//ret.pos.z *= _transform->PeekScale().z;
-	//ret.width *= _transform->PeekScale().x;
-	//ret.height *= _transform->PeekScale().y;
-	//ret.depth *= _transform->PeekScale().z;
-
-	ret.pos.x += _transform->PeekPosition().x;
-	ret.pos.y += _transform->PeekPosition().y;
-	ret.pos.z += _transform->PeekPosition().z;
-
-
-	return ret;
-}
-

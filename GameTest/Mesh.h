@@ -3,6 +3,9 @@
 #include "IRenderable.h"
 #include "Vector3.h"
 #include "Color.h"
+
+class Camera;
+
 class Mesh : public Component, public IRenderable
 {
 	DECLARE_DYNAMIC_DERIVED_CLASS(Mesh, Component)
@@ -14,7 +17,7 @@ public:
 	void SetColor(const Color& c) { color = c; }
 private:
 
-	void Render(const Mat4<float>& _vp) const override;
+	void Render(const Camera* _camera) const override;
 	void Initialize() override;
 	void Update(float _dt) override;
 	void Cleanup() override;

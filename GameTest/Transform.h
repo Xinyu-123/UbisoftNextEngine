@@ -18,12 +18,28 @@ public:
 	Vector3<float>& GetScale() { return scale; }
 	const Vector3<float>& PeekScale() const { return scale; }
 
+	Vector3<float> GetForward() const
+	{
+		return rotation.RotateAround({ 0, 0, 1 });
+	}
+	
+	Vector3<float> GetRight() const
+	{
+		return rotation.RotateAround({ 1, 0, 0 });
+	}
+	
+	Vector3<float> GetUp() const
+	{
+		return rotation.RotateAround({ 0, 1, 0 });
+	}
+
 	template<class T>
-	void TransformVertex(Vector4<T>& _vertex);
+	void TransformVertex(Vector4<T>& _vertex) const;
 	template<class T>
-	void TransformVertex(Vector3<T>& _vertex);
-	template<class T>
-	Mat4<T> GetTransformMatrix();
+	void TransformVertex(Vector3<T>& _vertex) const;
+
+
+	Mat4<float> GetTransformMatrix() const;
 
 
 private:
@@ -38,7 +54,7 @@ private:
 };
 
 template<class T>
-inline void Transform::TransformVertex(Vector4<T>& _vertex)
+inline void Transform::TransformVertex(Vector4<T>& _vertex) const
 {
 	Vector3<T> v = (Vector3<T>)_vertex;
 	TransformVertex(v);
@@ -46,7 +62,7 @@ inline void Transform::TransformVertex(Vector4<T>& _vertex)
 }
 
 template<class T>
-inline void Transform::TransformVertex(Vector3<T>& _vertex)
+inline void Transform::TransformVertex(Vector3<T>& _vertex) const
 {
 	_vertex.x *= scale.x;
 	_vertex.y *= scale.y;
@@ -56,8 +72,3 @@ inline void Transform::TransformVertex(Vector3<T>& _vertex)
 	_vertex += position;
 }
 
-template<class T>
-inline Mat4<T> Transform::GetTransformMatrix()
-{
-	return Mat4<T>();
-}

@@ -42,13 +42,28 @@ public:
 	void Normalize()
 	{
 		if (MagnitudeSq() == (T)0)
-			throw "Tried to normalize a Vector3 with magnitude 0";
+			return;
 
 		float magInverse = 1 / Magnitude();
 
 		x *= magInverse;
 		y *= magInverse;
 		z *= magInverse;
+	}
+
+	Vector3<float> GetNormalized() const
+	{
+		if (MagnitudeSq() == (T)0)
+			throw "Tried to normalize a Vector3 with magnitude 0";
+
+		Vector3<float> ret = *this;
+
+		float magInverse = 1 / Magnitude();
+
+		ret.x *= magInverse;
+		ret.y *= magInverse;
+		ret.z *= magInverse;
+		return ret;
 	}
 
 	// Operators
@@ -96,6 +111,26 @@ public:
 		return *this;
 	}
 
+	bool operator==(const Vector3<T>& _other)
+	{
+		return x == _other.x && y == _other.y && z == _other.z;
+	}
+
+	// static helper functions
+	static Vector3<T> Up()
+	{
+		return { 0, 1, 0 };
+	}
+	
+	static Vector3<T> Forward()
+	{
+		return { 0, 0, 1 };
+	}
+	
+	static Vector3<T> Right()
+	{
+		return { 1, 0, 0 };
+	}
 public:
 	T x;
 	T y;

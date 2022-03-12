@@ -23,9 +23,9 @@ void SphereCollider::CalculateAABB()
 		throw "No Radius Set on Sphere Collider";
 
 	aabb.box.pos = Vector3<float>(-radius, -radius, -radius);
-	aabb.box.width = radius;
-	aabb.box.height = radius;
-	aabb.box.depth = radius;
+	aabb.box.width = radius * 2;
+	aabb.box.height = radius * 2;
+	aabb.box.depth = radius * 2;
 }
 
 void SphereCollider::Update(float _dt)

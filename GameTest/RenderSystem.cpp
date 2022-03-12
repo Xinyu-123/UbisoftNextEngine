@@ -18,18 +18,22 @@ RenderSystem::~RenderSystem()
 void RenderSystem::Render()
 {
 	// sort the renderables by z position?
+
+	// Get the Camera Transform
 	Mat4<float> _vp = Mat4<float>::Identity();
 
 	for (auto r : renderables)
 	{
 		try
 		{
-			r->Render(_vp);
+			if (camera == nullptr)
+				throw "No Camera in the Scene";
+			r->Render(camera);
 		}
 		catch (const char* _msg)
 		{
 			//OutputDebugStringA((_msg));
-			std::cout << _msg << std::endl;
+			std::cout << "RenderSystem Error: " << _msg << std::endl;
 		}
 	}
 

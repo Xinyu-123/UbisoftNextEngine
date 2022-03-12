@@ -20,11 +20,17 @@ public:
 	const std::vector<Component*> FindComponentsOfType(const std::string& _name);
 
 	// Getters/Setters
-	const inline std::string& GetTag() const { return tag; }
-	inline void SetTag(const std::string& _tagName) { tag = _tagName; }
+	const std::string& GetTag() const { return tag; }
+	void SetTag(const std::string& _tagName) { tag = _tagName; }
+	
+	const std::string& GetName() const { return name; }
+	void SetName(const std::string& _name) { name = _name; }
 
 	Transform* GetTransform() { return transform; }
 	const Transform* PeekTransform() const { return transform; }
+
+	bool IsActive() const { return active; }
+	void SetActive(bool _active) { active = _active; }
 private:
 	GameObject(const GameObject& other) = delete;
 	GameObject& operator=(const GameObject& other) = delete;
@@ -35,8 +41,10 @@ private:
 private:
 	std::unordered_map<STRCODE, std::vector<Component*>> components;
 	std::string tag = "NONE";
+	std::string name = "NONE";
 	Transform* transform = nullptr;
 	bool toBeDestroyed = false;
+	bool active = true;
 
 	friend class GameObjectManager;
 };

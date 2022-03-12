@@ -17,5 +17,7 @@ private:
 
 private:
 	Box dimensions;
+
+	friend class CollisionSystem;
 };
 

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ComponentScript.h"
 #include "GameObject.h"
-
+#include "Collider.h"
 IMPLEMENT_ABSTRACT_CLASS(ComponentScript)
 
 ComponentScript::ComponentScript()

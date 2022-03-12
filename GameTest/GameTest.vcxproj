@@ -192,15 +192,21 @@
     <ClInclude Include="Box.h" />
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CharacterController.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="CollisionSystem.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ColorChanger.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentScript.h" />
+    <ClInclude Include="ConstantRotation.h" />
     <ClInclude Include="CRtti.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="EnemyController.h" />
+    <ClInclude Include="EnemyFactory.h" />
+    <ClInclude Include="EnemyProjectile.h" />
     <ClInclude Include="GameEngine.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="IRenderable.h" />
@@ -209,7 +215,15 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="MeshCollider.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="PhysicsPoint.h" />
+    <ClInclude Include="Plane.h" />
+    <ClInclude Include="PlayerFactory.h" />
+    <ClInclude Include="PlayerProjectile.h" />
+    <ClInclude Include="ProjectileFactory.h" />
+    <ClInclude Include="Prism.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Ray.h" />
     <ClInclude Include="RenderSystem.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sphere.h" />
@@ -218,6 +232,8 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TurretEnemyController.h" />
+    <ClInclude Include="UIManager.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
   </ItemGroup>
@@ -233,15 +249,21 @@
     <ClCompile Include="Box.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CharacterController.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionSystem.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ColorChanger.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentScript.cpp" />
+    <ClCompile Include="ConstantRotation.cpp" />
     <ClCompile Include="CRtti.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="EnemyController.cpp" />
+    <ClCompile Include="EnemyFactory.cpp" />
+    <ClCompile Include="EnemyProjectile.cpp" />
     <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
@@ -250,6 +272,14 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshCollider.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="PhysicsPoint.cpp" />
+    <ClCompile Include="Plane.cpp" />
+    <ClCompile Include="PlayerFactory.cpp" />
+    <ClCompile Include="PlayerProjectile.cpp" />
+    <ClCompile Include="ProjectileFactory.cpp" />
+    <ClCompile Include="Prism.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="Ray.cpp" />
     <ClCompile Include="registerClasses.cpp" />
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -261,6 +291,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TurretEnemyController.cpp" />
+    <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

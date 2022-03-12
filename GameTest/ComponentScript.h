@@ -1,7 +1,10 @@
 #pragma once
 #include "Component.h"
-#include "Collider.h"
 
+
+#define GETCOMPONENT(component) static_cast<component*>(go->FindComponentOfType(component::getClassHashCode()))
+
+class Collider;
 class ComponentScript : public Component
 {
 	DECLARE_ABSTRACT_DERIVED_CLASS(ComponentScript, Component)

@@ -101,6 +101,54 @@
     <ClCompile Include="Sphere.cpp">
       <Filter>Engine\3D Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="CharacterController.cpp">
+      <Filter>Game\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstantRotation.cpp">
+      <Filter>Game\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>Engine\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Engine\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Game\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsPoint.cpp">
+      <Filter>Engine\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>Engine\Souce Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Prism.cpp">
+      <Filter>Engine\3D Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFactory.cpp">
+      <Filter>Game\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileFactory.cpp">
+      <Filter>Game\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerProjectile.cpp">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyFactory.cpp">
+      <Filter>Game\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyController.cpp">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="TurretEnemyController.cpp">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyProjectile.cpp">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\app.h">
@@ -223,6 +271,54 @@
     <ClInclude Include="Sphere.h">
       <Filter>Engine\3D Shapes</Filter>
     </ClInclude>
+    <ClInclude Include="CharacterController.h">
+      <Filter>Game\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstantRotation.h">
+      <Filter>Game\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>Engine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Engine\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Game\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsPoint.h">
+      <Filter>Engine\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>Engine\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Prism.h">
+      <Filter>Engine\3D Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFactory.h">
+      <Filter>Game\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileFactory.h">
+      <Filter>Game\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerProjectile.h">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyFactory.h">
+      <Filter>Game\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyController.h">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="TurretEnemyController.h">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyProjectile.h">
+      <Filter>Game\Scripts\Projectiles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -260,6 +356,15 @@
     </Filter>
     <Filter Include="Engine\Components\Collision">
       <UniqueIdentifier>{c2a13a0b-ea83-4555-a531-b5dac97bac2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Factories">
+      <UniqueIdentifier>{afdb4c2e-5785-443e-8c8f-f42d60d3d255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripts\Projectiles">
+      <UniqueIdentifier>{cc9c9bb8-ef63-437a-ac59-805a46ce8271}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scripts\Enemies">
+      <UniqueIdentifier>{b8199b50-74be-4bb3-9a9d-e0c3f4ad4156}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

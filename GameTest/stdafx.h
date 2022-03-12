@@ -19,6 +19,10 @@
 #include <cassert>
 #include <unordered_map>
 #include <algorithm>
+#include <random>
+#include <ranges>
 
 #include "StandardTypes.h"
 #include "CRtti.h"
+
+#define NOMINMAX
