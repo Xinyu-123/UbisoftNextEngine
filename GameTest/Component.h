@@ -29,9 +29,8 @@ protected:
 	Transform* transform = nullptr;
 	bool CanAttachMultiple = false;
 	bool renderable = false;
-	bool collider = false;
-
 	friend class GameObject;
+	friend class GameObjectManager;
 	friend class CollisionSystem;
 };
 

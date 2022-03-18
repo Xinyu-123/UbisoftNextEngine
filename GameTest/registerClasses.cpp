@@ -3,11 +3,12 @@
 
 #include "CharacterController.h"
 #include "ConstantRotation.h"
-#include "GameManager.h"
 #include "Projectile.h"
 #include "PlayerProjectile.h"
 #include "EnemyController.h"
 #include "TurretEnemyController.h"
+#include "StandardEnemyShip.h"
+#include "PredictionEnemyTurret.h"
 
 void registerUserClasses()
 {
@@ -16,8 +17,9 @@ void registerUserClasses()
 	REGISTER_DYNAMIC_CLASS(PlayerProjectile);
 	REGISTER_DYNAMIC_CLASS(CharacterController);
 	REGISTER_DYNAMIC_CLASS(ConstantRotation);
-	REGISTER_DYNAMIC_CLASS(GameManager);
 	REGISTER_DYNAMIC_CLASS(TurretEnemyController);
+	REGISTER_DYNAMIC_CLASS(StandardEnemyShip);
+	REGISTER_DYNAMIC_CLASS(PredictionEnemyTurret);
 }
 
 #include "Object.h"
@@ -27,13 +29,15 @@ void registerUserClasses()
 #include "Transform.h"
 #include "ComponentScript.h"
 #include "Mesh.h"
+#include "Camera.h"
 #include "Collider.h"
 #include "SphereCollider.h"
 #include "BoxCollider.h"
 #include "MeshCollider.h"
 #include "PhysicsPoint.h"
-
-#include "Camera.h"
+#include "UIComponent.h"
+#include "Sprite.h"
+#include "Text.h"
 
 void registerEngineClasses()
 {
@@ -42,6 +46,7 @@ void registerEngineClasses()
 	REGISTER_ABSTRACT_CLASS(Component);
 	REGISTER_ABSTRACT_CLASS(ComponentScript);
 	REGISTER_ABSTRACT_CLASS(Collider);
+	REGISTER_ABSTRACT_CLASS(UIComponent);
 	REGISTER_DYNAMIC_CLASS(GameObject);
 	REGISTER_DYNAMIC_CLASS(Transform);
 	REGISTER_DYNAMIC_CLASS(Mesh);
@@ -50,7 +55,8 @@ void registerEngineClasses()
 	REGISTER_DYNAMIC_CLASS(MeshCollider);
 	REGISTER_DYNAMIC_CLASS(Camera);
 	REGISTER_DYNAMIC_CLASS(PhysicsPoint);
-
+	REGISTER_DYNAMIC_CLASS(Sprite);
+	REGISTER_DYNAMIC_CLASS(Text);
 	registerUserClasses();
 }
 

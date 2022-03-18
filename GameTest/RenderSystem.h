@@ -30,5 +30,6 @@ private:
 
 	friend class GameEngine;
 	friend class GameObject;
+	friend class GameObjectManager;
 };
 

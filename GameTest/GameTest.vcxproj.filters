@@ -149,6 +149,30 @@
     <ClCompile Include="EnemyProjectile.cpp">
       <Filter>Game\Scripts\Projectiles</Filter>
     </ClCompile>
+    <ClCompile Include="UIComponent.cpp">
+      <Filter>Engine\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Engine\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIFactory.cpp">
+      <Filter>Game\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardEnemyShip.cpp">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="PredictionEnemyTurret.cpp">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Engine\Components\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelFactory.cpp">
+      <Filter>Game\Factories</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelLoader.cpp">
+      <Filter>Game\Scripts</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="App\app.h">
@@ -319,6 +343,30 @@
     <ClInclude Include="EnemyProjectile.h">
       <Filter>Game\Scripts\Projectiles</Filter>
     </ClInclude>
+    <ClInclude Include="UIComponent.h">
+      <Filter>Engine\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Engine\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIFactory.h">
+      <Filter>Game\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardEnemyShip.h">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="PredictionEnemyTurret.h">
+      <Filter>Game\Scripts\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Engine\Components\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelFactory.h">
+      <Filter>Game\Factories</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelLoader.h">
+      <Filter>Game\Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -365,6 +413,9 @@
     </Filter>
     <Filter Include="Game\Scripts\Enemies">
       <UniqueIdentifier>{b8199b50-74be-4bb3-9a9d-e0c3f4ad4156}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Components\UI">
+      <UniqueIdentifier>{cc5614d2-b445-481a-bfbc-703c3bcc91d2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

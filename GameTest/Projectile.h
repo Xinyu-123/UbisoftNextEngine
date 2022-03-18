@@ -11,7 +11,7 @@ protected:
 	virtual void Update(float _dt) override;
 	virtual void Initialize() override;
 protected:
-	float destroyTime = 5.0f;
+	float destroyTime = 10.0f;
 	std::mt19937 rng;
 	std::uniform_real_distribution<float> rotRange;
 

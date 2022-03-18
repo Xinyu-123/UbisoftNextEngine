@@ -2,6 +2,7 @@
 #include "Singleton.h"
 
 class GameObject;
+class Component;
 
 class GameObjectManager final : public Singleton<GameObjectManager>
 {
@@ -22,6 +23,8 @@ public:
 	std::vector<GameObject*>& GetGameObjects();
 	void ClearGameObjects();
 	
+	void AddComponentRunTime(GameObject* const _go, Component* const _component);
+	void RemoveComponent(Component* const _component);
 private:
 	void Update(float _dt);
 
@@ -29,6 +32,8 @@ private:
 	std::vector<GameObject*> gameObjects;
 	std::vector<GameObject*> gameObjectsToRemove;
 	std::vector<GameObject*> gameObjectsToAdd;
+	std::vector<std::pair<GameObject*, Component*>> componentsToAdd;
+	std::vector<Component*> componentsToRemove;
 
 	friend class GameEngine;
 	friend class Singleton<GameObjectManager>;

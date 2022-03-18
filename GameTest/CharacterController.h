@@ -16,7 +16,8 @@ private:
 	void OnCollision(Collider* _other) override;
 
 	void LaunchProjectile() const;
-
+	void TakeDamage(float _damage);
+	void Die();
 private:
 	Transform* transform;
 	Mesh* mesh;
@@ -30,5 +31,9 @@ private:
 
 	const float fireCD = 0.3f;
 	float currFireCD = 0.0f;
+
+	int lives = 3;
+
+	std::vector<GameObject*> lifeSprites;
 };
 

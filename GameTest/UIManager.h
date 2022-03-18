@@ -1,19 +1,24 @@
 #pragma once
 #include "Singleton.h"
+
+#include "UIComponent.h"
 class UIManager : public Singleton<UIManager>
 {
 	DECLARE_SINGLETON(UIManager)
 private:
 	void Render();
 
-	//void AddRenderable(IRenderable* _renderable) { renderables.push_back(_renderable); }
-	//void RemoveRenderable(IRenderable* _renderable)
-	//{
-	//	renderables.erase(std::remove(renderables.begin(), renderables.end(), _renderable), renderables.end());
-	//}
+	void AddUI(UIComponent* _uiObject) { uiObjects.push_back(_uiObject); }
+	void RemoveUI(UIComponent* _uiObject)
+	{
+		uiObjects.erase(std::remove(uiObjects.begin(), uiObjects.end(), _uiObject), uiObjects.end());
+	}
 
 private:
-	/*std::vector<IRenderable*> renderables;*/
+	std::vector<UIComponent*> uiObjects;
+
 	friend class GameEngine;
+	friend class GameObject;
+	friend class GameObjectManager;
 };
 

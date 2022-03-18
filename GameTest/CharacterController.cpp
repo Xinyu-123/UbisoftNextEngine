@@ -9,8 +9,10 @@
 #include "PhysicsPoint.h"
 #include "Ray.h"
 #include "CollisionSystem.h"
+#include "GameManager.h"
 
 #include "ProjectileFactory.h"
+#include "UIFactory.h"
 
 IMPLEMENT_DYNAMIC_CLASS(CharacterController)
 
@@ -90,11 +92,25 @@ void CharacterController::Initialize()
 	physicsPoint = GETCOMPONENT(PhysicsPoint);
 
 	App::GetMousePos(lastMouseX, lastMouseY);
+
+	// setup the ui with lives
+	for (int i = 0; i < GameManager::Get().lives; ++i)
+	{
+		lifeSprites.push_back(UIFactory::Get().GetPlayerLifeSprite());
+		lifeSprites[i]->GetTransform()->GetPosition().x += 50 + 50 * i;
+		lifeSprites[i]->GetTransform()->GetPosition().y += APP_VIRTUAL_HEIGHT - 50;
+		GameObjectManager::Get().AddGameObjectRunTime(lifeSprites[i]);
+	}
+
+
 }
 
 void CharacterController::OnCollision(Collider* _other)
 {
-	mesh->SetColor(Color{ (unsigned char)0u, 0u, 255u });
+	if (_other->GetGameObject()->GetTag() == "Enemy Projectile" || _other->GetGameObject()->GetTag() == "Enemy")
+	{
+		TakeDamage(0.0f);
+	}
 }
 
 void CharacterController::LaunchProjectile() const
@@ -107,5 +123,26 @@ void CharacterController::LaunchProjectile() const
 
 	GameObjectManager::Get().AddGameObjectRunTime(projectile);
 
+
+}
+
+void CharacterController::TakeDamage(float _damage)
+{
+	GameManager::Get().lives--;
+	// Update UI
+	GameObjectManager::Get().RemoveGameObject(lifeSprites[GameManager::Get().lives]);
+	lifeSprites.erase(lifeSprites.end()-1);
+
+	if (GameManager::Get().lives <= 0)
+		Die();
+}
+
+void CharacterController::Die()
+{
+	// setup the gameover ui
+	GameObjectManager::Get().AddGameObjectRunTime(UIFactory::Get().GetGameOverText());
+
+	GameObjectManager::Get().RemoveComponent(GETCOMPONENT(Collider));
+	GameObjectManager::Get().RemoveComponent(this);
 
 }

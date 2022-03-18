@@ -10,3 +10,11 @@ UIManager::~UIManager()
 {
 
 }
+
+void UIManager::Render()
+{
+	for (auto uiObject : uiObjects)
+	{
+		uiObject->Render();
+	}
+}

@@ -38,6 +38,7 @@ GameObject* PlayerFactory::GetPlayer()
 
 	PhysicsPoint* physicsPoint = new PhysicsPoint();
 	physicsPoint->SetMass(4.0f);
+	physicsPoint->SetResistance(0.4f);
 	obj->AddComponent(physicsPoint);
 
 	Mesh* cannon = new Mesh();

@@ -10,10 +10,6 @@ private:
 	void Initialize() override;
 	void Update(float _dt) override;
 	void Cleanup() override;
-	void OnCollision(Collider* _other) override;
 private:
-	bool shrink = true;
-	Mesh* mesh;
-	float scale_rate = 0.5f;
 };
 

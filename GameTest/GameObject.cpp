@@ -8,6 +8,7 @@
 #include "Camera.h"
 #include "Collider.h"
 #include "CollisionSystem.h"
+#include "UIManager.h"
 
 IMPLEMENT_DYNAMIC_CLASS(GameObject);
 
@@ -26,29 +27,10 @@ void GameObject::AddComponent(Component* _component)
 	_component->go = this;
 	_component->transform = transform;
 
-
-	if (_component->renderable == true)
-	{
-		// Create a macro to cast Component to derived class to IRenderable
-		IRenderable* r = dynamic_cast<IRenderable*>(_component);
-		RenderSystem::Get().AddRenderable(r);
-
-	}
-
-
-	if (_component->getDerivedClassHashCode() == Camera::getClassHashCode())
-	{
-		RenderSystem::Get().AddCamera(static_cast<Camera*>(_component));
-	}
-
-
-	if (_component->collider == true)
+	if (_component->isA(Collider::getClassHashCode()))
 	{
 		Collider* c = static_cast<Collider*>(_component);
-		CollisionSystem::Get().AddCollider(c);
-
 		components[Collider::getClassHashCode()].push_back(_component);
-
 		return;
 	}
 
@@ -58,8 +40,45 @@ void GameObject::AddComponent(Component* _component)
 
 void GameObject::RemoveComponent(Component* _component)
 {
-	auto& componentVector = components.at(_component->getDerivedClassHashCode());
-	componentVector.erase(std::remove(componentVector.begin(), componentVector.end(), _component), componentVector.end() );
+	_component->Cleanup();
+	if (_component->renderable == true)
+	{
+		// Create a macro to cast Component to derived class to IRenderable
+		IRenderable* r = dynamic_cast<IRenderable*>(_component);
+		RenderSystem::Get().RemoveRenderable(r);
+
+	}
+
+
+	if (_component->isA(Camera::getClassHashCode()))
+	{
+		RenderSystem::Get().RemoveCamera();
+	}
+
+	if (_component->isA(UIComponent::getClassHashCode()))
+	{
+		UIManager::Get().RemoveUI(static_cast<UIComponent*>(_component));
+	}
+
+
+	if (_component->isA(Collider::getClassHashCode()))
+	{
+		Collider* c = static_cast<Collider*>(_component);
+		CollisionSystem::Get().RemoveCollider(c);
+
+	}
+
+	if (_component->isA(Collider::getClassHashCode()))
+	{
+		auto& componentVector = components.at(Collider::getClassHashCode());
+		componentVector.erase(std::remove(componentVector.begin(), componentVector.end(), _component), componentVector.end());
+
+	}
+	else
+	{
+		auto& componentVector = components.at(_component->getDerivedClassHashCode());
+		componentVector.erase(std::remove(componentVector.begin(), componentVector.end(), _component), componentVector.end());
+	}
 
 	delete _component;
 }
@@ -125,30 +144,7 @@ void GameObject::Cleanup()
 	{
 		for (auto component : componentVec.second)
 		{
-			component->Cleanup();
-			if (component->renderable == true)
-			{
-				// Create a macro to cast Component to derived class to IRenderable
-				IRenderable* r = dynamic_cast<IRenderable*>(component);
-				RenderSystem::Get().RemoveRenderable(r);
-
-			}
-
-
-			if (component->getDerivedClassHashCode() == Camera::getClassHashCode())
-			{
-				RenderSystem::Get().RemoveCamera();
-			}
-
-
-			if (component->collider == true)
-			{
-				Collider* c = static_cast<Collider*>(component);
-				CollisionSystem::Get().RemoveCollider(c);
-
-			}
-
-			delete component;
+			RemoveComponent(component);
 		}
 	}
 }

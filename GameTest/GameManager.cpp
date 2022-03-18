@@ -4,6 +4,7 @@
 #include "GameObjectManager.h"
 #include "CollisionSystem.h"
 #include "RenderSystem.h"
+#include "UIManager.h"
 
 #include "Color.h"
 #include "Cube.h"
@@ -25,10 +26,22 @@
 
 #include "PlayerFactory.h"
 #include "EnemyFactory.h"
+#include "UIFactory.h";
 
-IMPLEMENT_DYNAMIC_CLASS(GameManager)
+#include "Sprite.h"
+
+#include "App/SimpleSound.h"
+#include "App/app.h"
+#include "GameEngine.h"
+#include "LevelFactory.h"
+
 
 GameManager::GameManager()
+	:
+	rng(std::random_device()()),
+	rangeX(-15.0f, 15.0f),
+	rangeY(-15.0f, 15.0f),
+	rangeZ(5.0f, 25.0f)
 {
 
 }
@@ -39,68 +52,205 @@ GameManager::~GameManager()
 
 void GameManager::Update(float _dt)
 {
+
 }
 
 void GameManager::Cleanup()
 {
+	
 }
 
 void GameManager::Initialize()
 {
+	GameObjectManager::Get().AddGameObjectRunTime(UIFactory::Get().GetPlayerCrosshair());
+	GameObject* scoreObj = UIFactory::Get().GetScoreText();
+	ScoreText = static_cast<Text*>(scoreObj->FindComponentOfType(Text::getClassHashCode()));
+	GameObjectManager::Get().AddGameObjectRunTime(scoreObj);
 }
 
-void GameManager::LoadSceneOne()
+void GameManager::LoadScene(int _scene)
 {
-	std::random_device rng;
-	std::uniform_real_distribution<float> rangeX(-5.0f, 5.0f);
-	std::uniform_real_distribution<float> rangeY(-5.0f, 5.0f);
-	std::uniform_real_distribution<float> rangeZ(2.0f, 15.0f);
-
-	static int NUM_BOXES = 10;
-
-	//for (int i = 0; i < NUM_BOXES; ++i)
-	//{
-	//	GameObject* obj2 = new GameObject();
-
-	//	Mesh* m2 = new Mesh();
-	//	std::vector<Vector3<float>> vert;
-	//	std::vector<unsigned short> idx;
-	//	Cube::GetCube(vert, idx, 1.0f);
-	//	m2->SetVertices(vert);
-	//	m2->SetIndices(idx);
-	//	m2->SetColor({ 1.0f, 0.0f, 0.3f });
-	//	obj2->GetTransform()->GetPosition().x += rangeX(rng);
-	//	obj2->GetTransform()->GetPosition().y += rangeY(rng);
-	//	obj2->GetTransform()->GetPosition().z += rangeZ(rng);
-
-	//	obj2->AddComponent(m2);
-
-	//	BoxCollider* box = new BoxCollider();
-	//	box->SetDimensions(Vector3<float>{ -0.5f, -0.5f, -0.5f }, 1.0f, 1.0f, 1.0f);
-	//	obj2->AddComponent(box);
-	//	ConstantRotation* rot = new ConstantRotation();
-	//	obj2->AddComponent(rot);
-
-	//	obj2->SetTag("Box");
+	loadScene = true;
+	scene_to_load = _scene;
+}
 
 
-	//	GameObjectManager::Get().AddGameObject(obj2);
-	//}
-
-	for (int i = 0; i < NUM_BOXES; ++i)
+void GameManager::LoadScene()
+{
+	GameEngine::Get().Shutdown();
+	switch (scene_to_load)
 	{
-		GameObject* enemy = EnemyFactory::Get().GetStandardTuret();
-		enemy->GetTransform()->GetPosition().x = rangeX(rng);
-		enemy->GetTransform()->GetPosition().y = rangeY(rng);
-		enemy->GetTransform()->GetPosition().z = rangeZ(rng);
+	case 0:
+		LoadSceneHub();
+		break;
+	case 1:
+		LoadSceneOne();
+		break;
+	case 2:
+		LoadSceneTwo();
+		break;
+	case 3:
+		LoadSceneThree();
+		break;
+	case 4:
+		LoadSceneFour();
+		break;
+	}
 
-		enemy->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+	GameManager::Get().Initialize();
+	GameObjectManager::Get().Initialize();
+	loadScene = false;
+}
 
-		GameObjectManager::Get().AddGameObject(enemy);
+void GameManager::LoadInitial()
+{
+	LoadSceneHub();
+}
+
+void GameManager::LoadSceneHub()
+{
+	const int NUM_LEVELS = 3;
+
+
+
+	for (int i = 0; i < NUM_LEVELS; ++i)
+	{
+		GameObject* level = LevelFactory::Get().GetLevel1();
+		level->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		GameObjectManager::Get().AddGameObject(level);
+	}
+	
+	for (int i = 0; i < NUM_LEVELS; ++i)
+	{
+		GameObject* level = LevelFactory::Get().GetLevel2();
+		level->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		GameObjectManager::Get().AddGameObject(level);
+	}
+	
+	for (int i = 0; i < NUM_LEVELS; ++i)
+	{
+		GameObject* level = LevelFactory::Get().GetLevel3();
+		level->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		GameObjectManager::Get().AddGameObject(level);
+	}
+	
+	for (int i = 0; i < NUM_LEVELS; ++i)
+	{
+		GameObject* level = LevelFactory::Get().GetLevel4();
+		level->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		GameObjectManager::Get().AddGameObject(level);
 	}
 
 
 	playerGO = PlayerFactory::Get().GetPlayer();
 	GameObjectManager::Get().AddGameObject(playerGO);
+}
 
+void GameManager::LoadSceneOne()
+{
+	const int NUM_ENEMIES = 12;
+
+	for (int i = 0; i < NUM_ENEMIES; ++i)
+	{
+		GameObject* enemy = EnemyFactory::Get().GetStandardTuret();
+		enemy->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy);
+	}
+
+	GameObject* hub = LevelFactory::Get().GetHubLevel();
+	hub->GetTransform()->GetPosition() = { -3, 0, 28 };
+	GameObjectManager::Get().AddGameObject(hub);
+
+	playerGO = PlayerFactory::Get().GetPlayer();
+	GameObjectManager::Get().AddGameObject(playerGO);
+	
+}
+
+void GameManager::LoadSceneTwo()
+{
+	const int NUM_ENEMIES = 9;
+
+	for (int i = 0; i < NUM_ENEMIES; ++i)
+	{
+		GameObject* enemy = EnemyFactory::Get().GetPredictionTurret();
+		enemy->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy);
+		
+		GameObject* enemy2 = EnemyFactory::Get().GetStandardTuret();
+		enemy2->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy2->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy2);
+	}
+
+	GameObject* hub = LevelFactory::Get().GetHubLevel();
+	hub->GetTransform()->GetPosition() = { -3, 0, 28 };
+	GameObjectManager::Get().AddGameObject(hub);
+
+	playerGO = PlayerFactory::Get().GetPlayer();
+	GameObjectManager::Get().AddGameObject(playerGO);
+}
+
+void GameManager::LoadSceneThree()
+{
+	const int NUM_ENEMIES = 9;
+
+	for (int i = 0; i < NUM_ENEMIES; ++i)
+	{
+		GameObject* enemy = EnemyFactory::Get().GetStandardEnemyShip();
+		enemy->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy);
+		
+		GameObject* enemy2 = EnemyFactory::Get().GetStandardTuret();
+		enemy2->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy2->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy2);
+	}
+
+	GameObject* hub = LevelFactory::Get().GetHubLevel();
+	hub->GetTransform()->GetPosition() = { -3, 0, 28 };
+	GameObjectManager::Get().AddGameObject(hub);
+
+	playerGO = PlayerFactory::Get().GetPlayer();
+	GameObjectManager::Get().AddGameObject(playerGO);
+}
+
+void GameManager::LoadSceneFour()
+{
+	const int NUM_ENEMIES = 12;
+
+	for (int i = 0; i < NUM_ENEMIES; ++i)
+	{
+		GameObject* enemy = EnemyFactory::Get().GetStandardEnemyShip();
+		enemy->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy);
+
+		GameObject* enemy2 = EnemyFactory::Get().GetStandardTuret();
+		enemy2->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy2->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy2);
+		
+		GameObject* enemy3 = EnemyFactory::Get().GetStandardTuret();
+		enemy3->GetTransform()->GetPosition() = { rangeX(rng), rangeY(rng), rangeZ(rng) };
+		enemy3->GetTransform()->GetRotation() = Quaternion<float>::RotationQuaternion(rangeX(rng), { rangeX(rng), rangeX(rng), rangeX(rng) });
+
+		GameObjectManager::Get().AddGameObject(enemy3);
+	}
+
+	GameObject* hub = LevelFactory::Get().GetHubLevel();
+	hub->GetTransform()->GetPosition() = { -3, 0, 28 };
+	GameObjectManager::Get().AddGameObject(hub);
+
+	playerGO = PlayerFactory::Get().GetPlayer();
+	GameObjectManager::Get().AddGameObject(playerGO);
 }

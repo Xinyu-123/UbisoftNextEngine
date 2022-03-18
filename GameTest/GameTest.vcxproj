@@ -210,6 +210,8 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="IRenderable.h" />
+    <ClInclude Include="LevelFactory.h" />
+    <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="Mat4.h" />
     <ClInclude Include="Algo.h" />
     <ClInclude Include="Mesh.h" />
@@ -219,6 +221,7 @@
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PlayerFactory.h" />
     <ClInclude Include="PlayerProjectile.h" />
+    <ClInclude Include="PredictionEnemyTurret.h" />
     <ClInclude Include="ProjectileFactory.h" />
     <ClInclude Include="Prism.h" />
     <ClInclude Include="Projectile.h" />
@@ -228,11 +231,16 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="SphereCollider.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="StandardEnemyShip.h" />
     <ClInclude Include="StandardTypes.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="Text.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TurretEnemyController.h" />
+    <ClInclude Include="UIComponent.h" />
+    <ClInclude Include="UIFactory.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vector4.h" />
@@ -269,6 +277,8 @@
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="IRenderable.cpp" />
     <ClCompile Include="Algo.cpp" />
+    <ClCompile Include="LevelFactory.cpp" />
+    <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="MeshCollider.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -276,6 +286,7 @@
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PlayerFactory.cpp" />
     <ClCompile Include="PlayerProjectile.cpp" />
+    <ClCompile Include="PredictionEnemyTurret.cpp" />
     <ClCompile Include="ProjectileFactory.cpp" />
     <ClCompile Include="Prism.cpp" />
     <ClCompile Include="Projectile.cpp" />
@@ -284,14 +295,19 @@
     <ClCompile Include="RenderSystem.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="StandardEnemyShip.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Text.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TurretEnemyController.cpp" />
+    <ClCompile Include="UIComponent.cpp" />
+    <ClCompile Include="UIFactory.cpp" />
     <ClCompile Include="UIManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

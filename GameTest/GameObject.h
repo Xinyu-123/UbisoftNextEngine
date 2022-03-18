@@ -31,6 +31,8 @@ public:
 
 	bool IsActive() const { return active; }
 	void SetActive(bool _active) { active = _active; }
+
+	bool IsDestroyed() { return toBeDestroyed; }
 private:
 	GameObject(const GameObject& other) = delete;
 	GameObject& operator=(const GameObject& other) = delete;

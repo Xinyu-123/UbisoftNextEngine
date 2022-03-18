@@ -7,10 +7,13 @@ class TurretEnemyController : public EnemyController
 public:
 
 private:
-	void Attack() override;
+	void Attack(float _dt) override;
 	void Update(float _dt) override;
 	void Cleanup() override;
 
 	void LaunchProjectile() const;
+
+private:
+	float projectileForce = 140.0f;
 };
 

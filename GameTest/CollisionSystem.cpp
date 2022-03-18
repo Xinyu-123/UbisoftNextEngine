@@ -46,6 +46,10 @@ void CollisionSystem::Update(float _dt)
 	for (size_t i = 0; i < colliders.size(); ++i)
 	{
 		Collider* current = colliders[i];
+
+		if (current->GetGameObject()->IsDestroyed())
+			continue;
+
 		const Transform* currentTransform = current->go->PeekTransform();
 
 		std::vector<Collider*> remove_window;

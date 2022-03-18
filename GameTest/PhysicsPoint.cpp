@@ -18,8 +18,10 @@ void PhysicsPoint::Initialize()
 void PhysicsPoint::Update(float _dt)
 {
 	Vector3<float> acceleration = force / mass;
+	acceleration += velocity * -moveResistance;
 
 	velocity += acceleration * _dt;
+
 	*position += velocity * _dt;
 
 	force = { 0, 0, 0 };

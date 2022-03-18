@@ -25,6 +25,7 @@ public:
 
 	void SetGravity(bool _gravity) { gravity = _gravity; }
 
+	void SetResistance(float _r) { moveResistance = _r; }
 private:
 	void Initialize() override;
 	void Update(float _dt) override;
@@ -36,6 +37,9 @@ private:
 	Vector3<float> force = {0.0f, 0.0f, 0.0f};
 	float mass = 1.0f;
 	float massInverse = 0.1f;
+	
+	// counterVelocity from 0.0f - 1.0f
+	float moveResistance = 0.0f;
 
 	bool gravity = false;
 };

@@ -6,7 +6,6 @@ IMPLEMENT_ABSTRACT_CLASS(Collider)
 
 Collider::Collider()
 {
-	collider = true;
 }
 
 void Collider::CalculateAABB()

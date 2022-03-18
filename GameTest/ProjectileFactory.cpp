@@ -45,15 +45,16 @@ GameObject* ProjectileFactory::GetPlayerProjectile()
 	obj->AddComponent(physics);
 
 	PlayerProjectile* logic = new PlayerProjectile();
+	logic->SetDamage(5.0f);
 	obj->AddComponent(logic);
 
 	obj->SetTag("Player Projectile");
 	return obj;
 }
 
-GameObject* ProjectileFactory::GetEnemyProjectile()
+GameObject* ProjectileFactory::GetEnemyProjectile(float _radius, const Color& _c)
 {
-	const float radius = 0.3f;
+	const float radius = _radius;
 	const float mass = 1.0f;
 
 	GameObject* obj = new GameObject();
@@ -64,7 +65,7 @@ GameObject* ProjectileFactory::GetEnemyProjectile()
 	Sphere::GetSphere(verts, idx, radius);
 	m->SetVertices(verts);
 	m->SetIndices(idx);
-	m->SetColor({ 1.0f, 0.0f, 0.0f });
+	m->SetColor(_c);
 	obj->AddComponent(m);
 
 
@@ -80,5 +81,7 @@ GameObject* ProjectileFactory::GetEnemyProjectile()
 	obj->AddComponent(logic);
 
 	obj->SetTag("Enemy Projectile");
+
+
 	return obj;
 }
